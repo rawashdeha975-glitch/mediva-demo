@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #060f1f;
+  --color-navy-900: #0a1a33;
+  --color-navy-800: #102544;
+  --color-navy-700: #193459;
+  --color-navy-600: #2a4a78;
+  --color-navy-400: #7089ad;
+  --color-navy-200: #c3cfdf;
+  --color-emerald-brand: #0fa37f;
+  --color-mist: #f3f5f8;
+  --color-line: #e3e8ef;
+  --font-sans: var(--font-plex), "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  background: #fff;
+  color: var(--color-navy-900);
+}
+
+/* keeps Latin tokens (MEDIVA, AI, MVP) correctly ordered inside RTL text */
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(10, 26, 51, 0.09) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+.dot-grid-dark {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flow-dash {
+  stroke-dasharray: 6 6;
+  animation: dash 1.2s linear infinite;
+}
+
+/* ---------- print: one slide per 16:9 page ---------- */
+@media print {
+  @page {
+    size: 1920px 1080px;
+    margin: 0;
+  }
+  html,
+  body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-hide {
+    display: none !important;
+  }
+  .print-slide {
+    width: 1920px !important;
+    height: 1080px !important;
+    transform: none !important;
+    break-after: page;
+    page-break-after: always;
+    position: relative !important;
+    overflow: hidden;
+  }
+}
